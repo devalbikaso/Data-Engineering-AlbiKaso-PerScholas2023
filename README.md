@@ -1,2 +1,2 @@
 # Data-Engineering-AlbiKaso-PerScholas2023
-This project uses PySpark for ETL. PySpark's parallel processing handles data extraction, transformation, and SQL-based loading, ensuring efficient and scalable data pipelines.
+I am using PySpark to build my ETL pipeline for JSON databases, enabling data extraction, transformation, loading, and subsequent analysis and visualization.
