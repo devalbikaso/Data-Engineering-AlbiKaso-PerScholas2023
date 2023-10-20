@@ -20,7 +20,7 @@ customers_df = spark.read.jdbc(db_properties["url"], "CDW_SAPP_CUSTOMER", proper
 
 
 transaction_count = transactions_df.groupBy("TRANSACTION_TYPE").count().orderBy("count", ascending=False).toPandas()
-xCC = transaction_count.plot(kind='bar', x='TRANSACTION_TYPE', y='count', title="Transaction Counts by Type", legend=False)
+xCC = transaction_count.plot(x='TRANSACTION_TYPE', y='count', title="Transaction Counts by Type", legend=False)
 xCC.set_ylabel('Count')
 xCC.set_xlabel('Transaction Type')
 xCC.set_xticklabels(xCC.get_xticklabels(), rotation=35)
@@ -28,14 +28,14 @@ plt.show()
 
 
 state_count = customers_df.groupBy("CUST_STATE").count().orderBy("count", ascending=False).toPandas()
-zCC = state_count.plot(kind='bar', x='CUST_STATE', y='count', title="Number of Customers by State", legend=False)
+zCC = state_count.plot(x='CUST_STATE', y='count', title="Number of Customers by State", legend=False)
 zCC.set_ylabel("Count")
 zCC.set_xlabel("State")
 plt.show()
 
 # Req-3.3: Find and plot the sum of all transactions for the top 10 customers, and which customer has the highest transaction amount.
 customer_count = transactions_df.groupBy("CUST_SSN").agg({'TRANSACTION_VALUE': 'sum'}).orderBy("sum(TRANSACTION_VALUE)", ascending=False).limit(10).toPandas()
-CC_count = customer_count.plot(kind='bar', x='CUST_SSN', y='sum(TRANSACTION_VALUE)', title="Top 10 Customers by Transaction Amount", legend=False)
+CC_count = customer_count.plot(x='CUST_SSN', y='sum(TRANSACTION_VALUE)', title="Top 10 Customers by Transaction Amount", legend=False)
 CC_count.set_ylabel("# of Transactions")
 CC_count.set_xlabel("Customer #")
 CC_count.set_xticklabels(CC_count.get_xticklabels(), rotation=35)
