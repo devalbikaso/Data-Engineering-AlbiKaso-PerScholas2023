@@ -33,7 +33,7 @@ zCC.set_ylabel("Count")
 zCC.set_xlabel("State")
 plt.show()
 
-# Req-3.3: Find and plot the sum of all transactions for the top 10 customers, and which customer has the highest transaction amount.
+
 customer_count = transactions_df.groupBy("CUST_SSN").agg({'TRANSACTION_VALUE': 'sum'}).orderBy("sum(TRANSACTION_VALUE)", ascending=False).limit(10).toPandas()
 CC_count = customer_count.plot(x='CUST_SSN', y='sum(TRANSACTION_VALUE)', title="Top 10 Customers by Transaction Amount", legend=False)
 CC_count.set_ylabel("# of Transactions")
