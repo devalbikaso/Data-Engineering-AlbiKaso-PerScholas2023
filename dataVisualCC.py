@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 # Create a Spark session
-spark = SparkSession.builder.appName("DataAnalysisVisualization").getOrCreate()
+spark = SparkSession.builder.appName("DataVisualization").getOrCreate()
 
 
 db_properties = {
@@ -36,10 +36,9 @@ plt.show()
 # Req-3.3: Find and plot the sum of all transactions for the top 10 customers, and which customer has the highest transaction amount.
 customer_count = transactions_df.groupBy("CUST_SSN").agg({'TRANSACTION_VALUE': 'sum'}).orderBy("sum(TRANSACTION_VALUE)", ascending=False).limit(10).toPandas()
 CC_count = customer_count.plot(kind='bar', x='CUST_SSN', y='sum(TRANSACTION_VALUE)', title="Top 10 Customers by Transaction Amount", legend=False)
-CC_count.set_ylabel("Number of Transactions")
-CC_count.set_xlabel("Customer Number")
+CC_count.set_ylabel("# of Transactions")
+CC_count.set_xlabel("Customer #")
 CC_count.set_xticklabels(CC_count.get_xticklabels(), rotation=35)
-plt.tight_layout()
 plt.show()
 
 # Stop the Spark session
